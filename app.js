@@ -4,7 +4,7 @@ const postBank = require('./postbank');//sj
 
 app.use(express.static('public'));//if anyone request anything from public folder server should return it-called middleware
 
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
   //TODO get all the posts
   const posts = postBank.list();
 
@@ -36,9 +36,31 @@ app.get("/", (req, res) => {
   `)
 });
 
-app.get("/posts/:id", (req, res) =>{
+app.get("/posts/:id", (req, res, next) =>{
   const id = req.params.id;
   const post = postBank.find(id);
+
+  if (!post.id) {
+    // If the post wasn't found, set the HTTP status to 404 and send Not Found HTML
+    res.status(404)
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Wizard News</title>
+      <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+      <header><img src="/logo.png"/>Wizard News</header>
+      <div class="not-found">
+        <p>Accio Page! 🧙‍♀️ ... Page Not Found</p>
+        <img src="/dumbledore-404.gif" />
+      </div>
+    </body>
+    </html>`
+    res.send(html)
+  } else {
+
   res.send(`
   <html>
   <head>
@@ -62,7 +84,7 @@ app.get("/posts/:id", (req, res) =>{
   </body>
 
   </html>`);
-
+  }
 })
 
 const PORT = 1337;
