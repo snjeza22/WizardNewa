@@ -36,6 +36,7 @@ app.get("/", (req, res, next) => {
   `)
 });
 
+<<<<<<< HEAD
 app.get("/posts/:id", (req, res, next) =>{
   const id = req.params.id;
   const post = postBank.find(id);
@@ -60,6 +61,31 @@ app.get("/posts/:id", (req, res, next) =>{
     </html>`
     res.send(html)
   } else {
+=======
+app.get('/posts/:id', (req, res, next) => {
+  const id = req.params.id
+  const post = find(id)
+  // if (!post.id) {
+  //   // If the post wasn't found, set the HTTP status to 404 and send Not Found HTML
+  //   res.status(404)
+  //   const html = `
+  //   <!DOCTYPE html>
+  //   <html>
+  //   <head>
+  //     <title>Wizard News</title>
+  //     <link rel="stylesheet" href="/style.css" />
+  //   </head>
+  //   <body>
+  //     <header><img src="/logo.png"/>Wizard News</header>
+  //     <div class="not-found">
+  //       <p>Accio Page! 🧙‍♀️ ... Page Not Found</p>
+  //       <img src="/dumbledore-404.gif" />
+  //     </div>
+  //   </body>
+  //   </html>`
+  //   res.send(html)
+  // } else {
+>>>>>>> 2c62a0b (trash files, pulling from partner)
 
   res.send(`
   <html>
@@ -84,8 +110,15 @@ app.get("/posts/:id", (req, res, next) =>{
   </body>
 
   </html>`);
+<<<<<<< HEAD
   }
 })
+=======
+
+}
+//}
+)
+>>>>>>> 2c62a0b (trash files, pulling from partner)
 
 const { PORT = 1337 } = process.env;
 
