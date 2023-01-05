@@ -15,13 +15,13 @@ app.get("/", (req, res) => {
   <title>Wizard News</title>
   </head>
   <body>
-  <<h1>Wizards News</h1>
+  <h1><img src='/logo.png'> Wizards News</h1>
   <ul>
   ${posts.map(post => {
     return `<li>${post.title}</li>`
   }).join('')}</ul>
   </body>
-  
+
   </html>
   `)
 });
