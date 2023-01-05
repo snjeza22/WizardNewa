@@ -1,7 +1,24 @@
 const express = require("express");
 const app = express();
+const postBank = require('./postbank');//sj
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.use(express.static('public'));//if anyone request anything from public folder server should return it-called middleware
+
+app.get("/", (req, res) => {
+  //TODO get all the posts
+  res.send(`
+  <html>
+  <head>
+  <link >
+  <title>Wizard News</title>
+  </head>
+  <body>
+  <h1>Wizards News</h1>
+  </body>
+  
+  </html>
+  `)
+});
 
 const PORT = 1337;
 
