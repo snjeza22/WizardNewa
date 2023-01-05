@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
         <div class='news-item'>
           <p>
             <span class="news-position">${post.id}. ▲</span>
-            ${post.title}
+            <a href="/posts/${post.id}">${post.title}</a>
             <small>(by ${post.name})</small>
           </p>
           <small class="news-info">
@@ -35,6 +35,35 @@ app.get("/", (req, res) => {
   </html>
   `)
 });
+
+app.get("/posts/:id", (req, res) =>{
+  const id = req.params.id;
+  const post = postBank.find(id);
+  res.send(`
+  <html>
+  <head>
+  <link rel='stylesheet' href='/style.css' />
+  <title>Wizard News</title>
+  </head>
+  <body>
+  <div class="news-list">
+      <header><img src="/logo.png"/>Wizard News</header>
+        <div class='news-item'>
+          <p>
+            <span class="news-position">${post.id}. ▲</span>
+            ${post.title}
+            <small>(by ${post.name})</small>
+          </p>
+          <p>
+          ${post.content}
+          </p>
+        </div>
+    </div>
+  </body>
+
+  </html>`);
+
+})
 
 const PORT = 1337;
 
