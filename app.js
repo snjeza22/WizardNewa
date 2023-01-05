@@ -6,14 +6,20 @@ app.use(express.static('public'));//if anyone request anything from public folde
 
 app.get("/", (req, res) => {
   //TODO get all the posts
+  const posts = postBank.list();
+
   res.send(`
   <html>
   <head>
-  <link >
+  <link rel='stylesheet' href='/style.css' />
   <title>Wizard News</title>
   </head>
   <body>
-  <h1>Wizards News</h1>
+  <<h1>Wizards News</h1>
+  <ul>
+  ${posts.map(post => {
+    return `<li>${post.title}</li>`
+  }).join('')}</ul>
   </body>
   
   </html>
