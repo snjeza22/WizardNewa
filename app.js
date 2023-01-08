@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const postBank = require('./postBank.js');//sj
+const postBank = require('./postBank');//sj
 
 app.use(express.static('public'));//if anyone request anything from public folder server should return it-called middleware
 
